@@ -1,0 +1,27 @@
+{
+  "name": "ens-subgraph",
+  "version": "1.0.2",
+  "license": "MIT",
+  "scripts": {
+    "codegen": "graph codegen --output-dir src/types/",
+    "setup": "npm run codegen && npm run create-local && npm run deploy-local",
+    "create-local": "graph create graphprotocol/ens --node http://127.0.0.1:8020",
+    "deploy-local": "graph deploy graphprotocol/ens --debug --ipfs http://localhost:5001 --node http://127.0.0.1:8020/",
+    "remove-local": "graph remove graphprotocol/ens --node http://127.0.0.1:8020",
+    "docker:setup": "npm run codegen && npm run docker:create-local && npm run docker:deploy-local",
+    "docker:create-local": "graph create graphprotocol/ens --node http://ens-app_graph-node_1:8020",
+    "docker:deploy-local": "graph deploy graphprotocol/ens --debug --ipfs http://ens-app_ipfs_1:5001 --node http://ens-app_graph-node_1:8020/",
+    "docker:remove-local": "graph remove graphprotocol/ens --node http://ens-app_graph-node_1:8020",
+    "build": "graph build",
+    "deploy": "graph deploy ensdomains/ens --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy-alt": "graph deploy ensdomains/ens --debug --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/ --access-token 9bb4fcaeaa01fec6e8e578bdd800599c",
+    "watch-local": "graph deploy graphprotocol/ens --watch --debug --node http://127.0.0.1:8020/ --ipfs http://localhost:5001",
+    "auth": "graph auth https://api.thegraph.com/deploy/ 9bb4fcaeaa01fec6e8e578bdd800599c"
+  },
+  "devDependencies": {
+    "@ensdomains/content-hash": "^2.5.3",
+    "@graphprotocol/graph-cli": "^0.17.1",
+    "@graphprotocol/graph-ts": "^0.17.0"
+  },
+  "dependencies": {}
+}
